@@ -195,4 +195,120 @@ var DOTCALL = function(obj, prop, args){
 
 ///////////////Prototypal Inheritance///////////////////
 
+var Animal = function(){
+	this.offspring  =[];
+}
+Dog = function(){}
+
+Dog.prototype = new Animal();
+var dog1 = new Dog();
+var dog2 = new Dog();
+var pup = new Dog();
+
+dog1.offspring.push(pup);
+dog2.offspring;
+
+
+ var Animal = function(name){
+ 	this.name = name;
+ }
+
+Animal.prototype.eats = function(){
+	return this.name + " is eating!"
+}
+
+var sponge = new Animal('Bob');
+
+/// More complex-- adding
+//Mammal -- has hair --- Chordate-- has spine --- Animal -- eats
+
+var Animal = function(name){
+	this.name = name;
+}
+
+Animal.prototype.eats = function(){
+	return this.name + ' is eating!';
+}
+
+var Chordate = function(name){
+	return this.name = name;
+}
+/*	var Chordate = function(name){
+	return Animal.call(this,name);
+}
+Chordate.prototype = new Animal();
+Chordate.prototype.hasSpine = true;
+
+
+*/
+Chordate.prototype = new Animal();
+Chordate.prototype.hasSpine = true;
+
+
+Mammal = function(name){
+	return this.name = name;
+}
+/*
+var Mammal = function(name){
+	Chordate.call(this,name);
+}
+Mammal.prototype = new Chordate();
+Mammal.prototype.hasHair = true;
+
+*/
+
+Mammal.prototype = new Chordate();
+Mammal.prototype.hasHair = true;
+
+
+var m = new Mammal('dog');
+
+////////////////////
+
+Animal = function(){
+ this.offspring = [];
+}
+
+var Dog = function(){};
+ Dog.prototype = new Animal();
+
+var dog1 = new Dog();
+var dog2 = new Dog();
+var pup = new Dog();
+
+
+dog1.offspring.push(pup);
+dog2.offspring;// will have pup;
+
+/////Summary
+
+var Dog = function(){};
+var pup = new Dog();
+
+
+////////////Object.create/////////////
+// Is slower when using this?
+
+var Animal = {
+init: function(name){
+	return this.name = name;
+},
+eats: function(){
+	return this.name + ' is eating';
+ }
+}
+
+var Chordate = Object.create(Animal,{
+hasSpine: {value: true;}
+});
+
+var Mammal = Object.create(Chordate, {
+	hasHair: {value: true}
+});
+
+var m = Object.create(Mammal);
+
+m.init('dog');
+
+
 
