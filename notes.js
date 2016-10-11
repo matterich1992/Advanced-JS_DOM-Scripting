@@ -311,4 +311,23 @@ var m = Object.create(Mammal);
 m.init('dog');
 
 
+/////Summary////
 
+
+//Type Checking//
+typeof [].length=='number'; //--> return true
+
+var obj =[];
+Object.prototype.toString.call(obj);
+
+
+/// using the 'in' operator in javascript
+
+var obj = {"8": 'hi'};
+var has8 = "8" in obj; // will return true;
+//'in' checks for properties on object
+
+var o = {"foo": "hi"};
+var prop = "foo";
+var hasProp = prop in o; 
+// will also return true
